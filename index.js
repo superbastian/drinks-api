@@ -1,8 +1,10 @@
+const cors = require('@fastify/cors')
 const fastify = require('fastify')({ logger: true })
 const DrinkService = require('./services/api')
 
-
 const drinkService = new DrinkService()
+
+fastify.register(cors, { origin: '*' })
 
 fastify.get('/homepage', async (request, reply) => {
   return await drinkService.getHomepage()
